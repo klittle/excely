@@ -12,7 +12,7 @@ if __name__ == '__main__':
     """
     Open excel file and get sheet names
     """
-    # this works with in.xls in root directory
+    # this works with file in.xlsx in root directory
     in_workbook = load_workbook('in.xlsx')
     # ['Sheet 1']
     print(in_workbook.get_sheet_names())
