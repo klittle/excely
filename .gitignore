@@ -116,8 +116,9 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
-# ignore input file
-oovwords.csv
+# ignore csv files
+*.csv
 
-# ignore output file
-suggested_spellings_results.csv
+# ignore excel files
+*.xls
+*.xlsx
