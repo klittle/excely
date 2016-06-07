@@ -66,9 +66,26 @@ In shell run deactivate
     (venv) ➜  excely git:(master) ✗ deactivate
 
 ## Appendix pip install dependencies
-With virtualenv active
+In terminal project root directory with venv active, ran
 
     pip install openpyxl
+
+Terminal output  
+
+    Successfully installed et-xmlfile-1.0.1 jdcal-1.2 openpyxl-2.3.5
+    You are using pip version 7.1.2, however version 8.1.2 is available.
+    You should consider upgrading via the 'pip install --upgrade pip' command.
+
+### upgrade pip
+
+    (venv) ➜  excely git:(master) ✗ pip install --upgrade pip
+    Collecting pip
+      Using cached pip-8.1.2-py2.py3-none-any.whl
+    Installing collected packages: pip
+      Found existing installation: pip 7.1.2
+        Uninstalling pip-7.1.2:
+          Successfully uninstalled pip-7.1.2
+    Successfully installed pip-8.1.2
 
 ## Appendix clone app from github to another machine
 After cloning app from github, activating venv did still showed system python.
