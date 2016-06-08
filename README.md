@@ -93,4 +93,8 @@ Fixed as follows:
 
     delete ./venv
     Re-run pyvenv venv
-    pip re-install packages.
+
+### Install required packages that weren't in git version control
+
+    pip install --upgrade -r requirements.txt
+
