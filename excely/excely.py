@@ -20,31 +20,27 @@ if __name__ == '__main__':
     """
     Open excel file and get sheet names
     """
-    # this works with file in.xlsx in root directory
+    # project root directory, filename in.xlsx
     in_workbook = load_workbook('in.xlsx')
     # ['Sheet 1']
     print(in_workbook.get_sheet_names())
-    in_worksheet = in_workbook.active
-    # x
-    print(in_worksheet['b3'].value)
-    # 88
-    print(in_worksheet['c3'].value)
-
+    in_sheet = in_workbook.active
 
     out_workbook = Workbook()
-    dest_filename = 'out.xlsx'
+    out_filename = 'out.xlsx'
+    out_sheet = out_workbook.active
+    out_sheet.title = "my_sheet"
 
-    out_worksheet = out_workbook.active
-    out_worksheet.title = "range names"
+    # http://stackoverflow.com/questions/37440855/how-do-i-iterate-through-cells-in-a-specific-column-using-openpyxl-1-6
+    first_non_header_row = 3
+    in_column = 2
+    out_column = 1
 
-    for row in range(1, 40):
-        out_worksheet.append(range(600))
+    for row in range(first_non_header_row, in_sheet.max_row + 1):
+        in_word = in_sheet.cell(row=row, column=in_column).value
+        out_word = in_word + 'foo'
+        print(in_word + ', ' + out_word)
+        # out_sheet set cell value
+        _ = out_sheet.cell(column=out_column, row=row, value=out_word)
 
-    ws2 = out_workbook.create_sheet(title="Pi")
-    ws2['F5'] = 3.14
-    ws3 = out_workbook.create_sheet(title="Data")
-    for row in range(10, 20):
-        for col in range(27, 54):
-            _ = ws3.cell(column=col, row=row, value="%s" % get_column_letter(col))
-    print(ws3['AA10'].value)
-    out_workbook.save(filename = dest_filename)
+    out_workbook.save(filename = out_filename)
