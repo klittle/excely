@@ -17,6 +17,12 @@ from openpyxl.cell import get_column_letter
 # http://stackoverflow.com/questions/419163/what-does-if-name-main-do
 if __name__ == '__main__':
 
+    def spelled_word(in_word):
+        """
+        returns spelled_word
+        """
+        return in_word + 'foo'
+
     """
     Open excel file and get sheet names
     """
@@ -38,9 +44,10 @@ if __name__ == '__main__':
 
     for row in range(first_non_header_row, in_sheet.max_row + 1):
         in_word = in_sheet.cell(row=row, column=in_column).value
-        out_word = in_word + 'foo'
+        out_word = spelled_word(in_word)
         print(in_word + ', ' + out_word)
         # out_sheet set cell value
         _ = out_sheet.cell(column=out_column, row=row, value=out_word)
 
     out_workbook.save(filename = out_filename)
+
