@@ -29,8 +29,9 @@ if __name__ == '__main__':
     in_filename = 'in.xlsx'
     in_workbook = load_workbook(in_filename)
     # ['Sheet 1']
-    print(in_workbook.get_sheet_names())
+    print(in_workbook.sheetnames)
     in_sheet = in_workbook.active
+    print('in_sheet name ', in_workbook.sheetnames[0])
 
     out_workbook = Workbook()
     out_sheet = out_workbook.active
@@ -39,7 +40,7 @@ if __name__ == '__main__':
     out_filename = 'out.xlsx'
 
     # http://stackoverflow.com/questions/37440855/how-do-i-iterate-through-cells-in-a-specific-column-using-openpyxl-1-6
-    first_non_header_row = 3
+    first_non_header_row = 2
     # column to read in in_sheet
     in_column = 2
     # column to write in out_sheet
