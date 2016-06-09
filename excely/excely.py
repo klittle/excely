@@ -7,7 +7,6 @@ from openpyxl import load_workbook
 # write
 from openpyxl import Workbook
 
-# http://openpyxl.readthedocs.io/en/default/usage.html#write-a-workbook
 from openpyxl.compat import range
 from openpyxl.cell import get_column_letter
 
@@ -24,22 +23,26 @@ if __name__ == '__main__':
         return in_word + 'foo'
 
     """
-    Open excel file and get sheet names
+    Read from Excel file in.xlsx and write to out.xlsx
     """
-    # project root directory, filename in.xlsx
-    in_workbook = load_workbook('in.xlsx')
+    # input file in project root directory
+    in_filename = 'in.xlsx'
+    in_workbook = load_workbook(in_filename)
     # ['Sheet 1']
     print(in_workbook.get_sheet_names())
     in_sheet = in_workbook.active
 
     out_workbook = Workbook()
-    out_filename = 'out.xlsx'
     out_sheet = out_workbook.active
     out_sheet.title = "my_sheet"
+    # output file in project root directory
+    out_filename = 'out.xlsx'
 
     # http://stackoverflow.com/questions/37440855/how-do-i-iterate-through-cells-in-a-specific-column-using-openpyxl-1-6
     first_non_header_row = 3
+    # column to read in in_sheet
     in_column = 2
+    # column to write in out_sheet
     out_column = 1
 
     for row in range(first_non_header_row, in_sheet.max_row + 1):
