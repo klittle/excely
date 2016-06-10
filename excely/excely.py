@@ -91,20 +91,23 @@ if __name__ == '__main__':
 
         misspelled_sheet_first_non_header_row = 2
         misspelled_sheet_misspelled_column = 2
-        misspelled_sheet_column_to_write = 4
+        misspelled_sheet_correct_column = 4
 
         # spellings_sheet
         for row in range(spellings_sheet_first_non_header_row, spellings_sheet.max_row + 1):
             misspelled_word = spellings_sheet.cell(row=row, column=spellings_sheet_misspelled_column).value
             spelled_word = spellings_sheet.cell(row=row, column=spellings_sheet_correct_column).value
+            spelled_status = spellings_sheet.cell(row=row, column=status_column).value
 
             # misspelled_sheet
             for misspelled_row in range(misspelled_sheet_first_non_header_row, misspelled_sheet.max_row + 1):
-                if misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_misspelled_column).value == misspelled_word:
+                if ((misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_misspelled_column).value == misspelled_word) \
+                        and ((misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value == None) \
+                        or (misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value == ''))):
                     print('spellings_row: ' + str(row) + ', misspelled_word: ' + misspelled_word + ', spelled_word: ' + spelled_word)
                     print('matched misspelled_row ' + str(misspelled_row) + ' misspelled_word ' + misspelled_word)
-                    _ = misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_misspelled_column, value=spelled_word)
-                    _ = misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_misspelled_column, value=spelled_word)
+                    _ = misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column, value=spelled_word)
+                    _ = misspelled_sheet.cell(row=misspelled_row, column=status_column, value=spelled_status)
 
         misspelled_workbook.save(filename = misspelled_filename)
 
