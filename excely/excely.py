@@ -99,20 +99,24 @@ if __name__ == '__main__':
             spelled_word = spellings_sheet.cell(row=row, column=spellings_sheet_correct_column).value
             spelled_status = spellings_sheet.cell(row=row, column=status_column).value
 
-            # misspelled_sheet
-            for misspelled_row in range(misspelled_sheet_first_non_header_row, misspelled_sheet.max_row + 1):
-                misspelled_sheet_misspelled_word = misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_misspelled_column).value
-                misspelled_sheet_correct_column_is_empty = ((misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value == None) \
-                        or (misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value == ''))
+            if (spellings_sheet_misspelled_word != None) \
+                    and (spelled_word != None) \
+                    and (spelled_status != None):
 
-                if ((misspelled_sheet_misspelled_word != None) \
-                        and (misspelled_sheet_misspelled_word == spellings_sheet_misspelled_word) \
-                        and misspelled_sheet_correct_column_is_empty):
-                    print('spellings_row: ' + str(row))
-                    print('misspelled_row ' + str(misspelled_row))
-                    print(spellings_sheet_misspelled_word + ', ' + spelled_word)
-                    _ = misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column, value=spelled_word)
-                    _ = misspelled_sheet.cell(row=misspelled_row, column=status_column, value=spelled_status)
+                # misspelled_sheet
+                for misspelled_row in range(misspelled_sheet_first_non_header_row, misspelled_sheet.max_row + 1):
+                    misspelled_sheet_misspelled_word = misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_misspelled_column).value
+                    misspelled_sheet_correct_column_is_empty = ((misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value == None) \
+                            or (misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value == ''))
+
+                    if ((misspelled_sheet_misspelled_word != None) \
+                            and (misspelled_sheet_misspelled_word == spellings_sheet_misspelled_word) \
+                            and misspelled_sheet_correct_column_is_empty):
+                        print('spellings_row: ' + str(row))
+                        print('misspelled_row ' + str(misspelled_row))
+                        print(spellings_sheet_misspelled_word + ', ' + spelled_word)
+                        _ = misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column, value=spelled_word)
+                        _ = misspelled_sheet.cell(row=misspelled_row, column=status_column, value=spelled_status)
 
         misspelled_workbook.save(filename = misspelled_filename)
 
