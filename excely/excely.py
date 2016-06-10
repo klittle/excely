@@ -115,10 +115,10 @@ if __name__ == '__main__':
                         print('spellings_row: ' + str(row))
                         print('misspelled_row ' + str(misspelled_row))
                         print(spellings_sheet_misspelled_word + ', ' + spelled_word)
-                        _ = misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column, value=spelled_word)
-                        _ = misspelled_sheet.cell(row=misspelled_row, column=status_column, value=spelled_status)
+                        misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value = spelled_word
+                        misspelled_sheet.cell(row=misspelled_row, column=status_column).value = spelled_status
 
-        misspelled_workbook.save(filename = misspelled_filename)
+        misspelled_workbook.save(filename = misspelled_file_name)
 
 #read_in_write_out()
 
