@@ -92,15 +92,12 @@ if __name__ == '__main__':
         spellings_sheet_correct_column = 4
 
         for row in range(spellings_sheet_first_non_header_row, spellings_sheet.max_row + 1):
-            print('spellings_row ' + row)
             misspelled_word = misspelled_sheet.cell(row=row, column=spellings_sheet_misspelled_column).value
             spelled_word = misspelled_sheet.cell(row=row, column=spellings_sheet_correct_column).value
 
-            print('searching for ' + misspelled_word)
-
             for misspelled_row in range(misspelled_sheet_first_non_header_row, misspelled_sheet.max_row + 1):
-                print('misspelled_row ' + misspelled_row)
                 if misspelled_sheet.cell(row=misspelled_row, column=spellings_sheet_misspelled_column).value == misspelled_word:
+                    print('spellings_row ' + str(row) + ' matched misspelled_row ' + str(misspelled_row))
                     print(' misspelled_word ' + misspelled_word + ', spelled_word '+ spelled_word)
                     _ = misspelled_sheet.cell(row=misspelled_row, column=spellings_sheet_misspelled_column, value=spelled_word)
 
