@@ -56,5 +56,57 @@ if __name__ == '__main__':
 
         out_workbook.save(filename = out_filename)
 
+    def write_spelling_matches_to_file():
+        """
+        In both of two files, column b contains misspelled word.
+
+        misspelled.xlsx
+        column b isn't sorted, we don't want to sort this file.
+
+        spellings.xlsx
+        spellings number of rows is <= misspelled number of rows
+        column b is sorted alphabetically ascending
+        column d has correct spelling
+
+        Iterate over every row in spellings
+        For column b misspelled word, look in misspelled column b for match (one at most).
+        If find match, copy spellings column a to misspelled column a.
+        If find match, copy spellings column d to misspelled column d.
+        """
+        # misspelled in project root directory
+        misspelled_file_name = 'misspelled.xlsx'
+        misspelled_workbook = load_workbook(misspelled_file_name)
+        misspelled_sheet = misspelled_workbook.active
+
+        spellings_file_name = 'spellings.xlsx'
+        spellings_workbook = load_workbook(spellings_file_name)
+        spellings_sheet = spellings_workbook.active
+
+        # http://stackoverflow.com/questions/37440855/how-do-i-iterate-through-cells-in-a-specific-column-using-openpyxl-1-6
+        misspelled_sheet_first_non_header_row = 2
+        misspelled_sheet_column_to_read = 2
+        misspelled_sheet_column_to_write = 4
+
+        spellings_sheet_first_non_header_row = 2
+        spellings_sheet_misspelled_column = 2
+        spellings_sheet_correct_column = 4
+
+        for row in range(spellings_sheet_first_non_header_row, spellings_sheet.max_row + 1):
+            print('spellings_row ' + row)
+            misspelled_word = misspelled_sheet.cell(row=row, column=spellings_sheet_misspelled_column).value
+            spelled_word = misspelled_sheet.cell(row=row, column=spellings_sheet_correct_column).value
+
+            print('searching for ' + misspelled_word)
+
+            for misspelled_row in range(misspelled_sheet_first_non_header_row, misspelled_sheet.max_row + 1):
+                print('misspelled_row ' + misspelled_row)
+                if misspelled_sheet.cell(row=misspelled_row, column=spellings_sheet_misspelled_column).value == misspelled_word:
+                    print(' misspelled_word ' + misspelled_word + ', spelled_word '+ spelled_word)
+                    _ = misspelled_sheet.cell(row=misspelled_row, column=spellings_sheet_misspelled_column, value=spelled_word)
+
+        misspelled_workbook.save(filename = misspelled_filename)
+
 #read_in_write_out()
+
+write_spelling_matches_to_file()
 

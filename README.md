@@ -15,22 +15,6 @@ https://openpyxl.readthedocs.io/en/default
 
 # Results
 
-## Goal
-In both of two files, column b contains misspelled word.
-
-### file_to_update
-column b isn't sorted, we don't want to sort this file.
-
-### file_with_spellings
-file_with_spellings number of rows is <= file_to_update number of rows
-column b is sorted alphabetically ascending
-column d has correct spelling
-
-Iterate over every row in file_with_spellings
-For column b misspelled word, look in file_to_update column b for match (one at most).
-If find match, copy file_with_spellings column a to file_to_update column a.
-If find match, copy file_with_spellings column d to file_to_update column d.
-
 ---
 
 ## Appendix virtual environment venv
