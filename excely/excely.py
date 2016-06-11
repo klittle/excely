@@ -99,25 +99,41 @@ if __name__ == '__main__':
             spelled_word = spellings_sheet.cell(row=row, column=spellings_sheet_correct_column).value
             spelled_status = spellings_sheet.cell(row=row, column=status_column).value
 
-            if (spellings_sheet_misspelled_word != None) \
-                    and (spelled_word != None) \
-                    and (spelled_status != None):
+            if (spellings_sheet_misspelled_word is not None) \
+                    and (spelled_word is not None) \
+                    and (spelled_status is not None):
 
-                # misspelled_sheet
-                for misspelled_row in range(misspelled_sheet_first_non_header_row, misspelled_sheet.max_row + 1):
-                    misspelled_sheet_misspelled_word = misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_misspelled_column).value
-                    misspelled_sheet_correct_column_is_empty = ((misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value == None) \
-                            or (misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value == ''))
-
-                    if ((misspelled_sheet_misspelled_word != None) \
-                            and (misspelled_sheet_misspelled_word == spellings_sheet_misspelled_word) \
-                            and misspelled_sheet_correct_column_is_empty):
-                        print('spellings_row: ' + str(row) + ', misspelled_row: ' + str(misspelled_row))
-                        print(spellings_sheet_misspelled_word + ', ' + spelled_word)
-                        misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value = spelled_word
-                        misspelled_sheet.cell(row=misspelled_row, column=status_column).value = spelled_status
+                write_spelling_to_misspelled(misspelled_sheet,
+                                             misspelled_sheet_correct_column,
+                                             misspelled_sheet_first_non_header_row,
+                                             misspelled_sheet_misspelled_column,
+                                             row,
+                                             spelled_status,
+                                             spelled_word,
+                                             spellings_sheet_misspelled_word,
+                                             status_column)
 
         misspelled_workbook.save(filename = misspelled_file_name)
+
+
+    def write_spelling_to_misspelled(misspelled_sheet, misspelled_sheet_correct_column,
+                                     misspelled_sheet_first_non_header_row, misspelled_sheet_misspelled_column, row,
+                                     spelled_status, spelled_word, spellings_sheet_misspelled_word, status_column):
+
+        for misspelled_row in range(misspelled_sheet_first_non_header_row, misspelled_sheet.max_row + 1):
+            misspelled_sheet_misspelled_word = misspelled_sheet.cell(row=misspelled_row,
+                                                                     column=misspelled_sheet_misspelled_column).value
+            misspelled_sheet_correct_column_is_empty = (
+            (misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value is None) \
+            or (misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value == ''))
+
+            if ((misspelled_sheet_misspelled_word is not None) \
+                        and (misspelled_sheet_misspelled_word == spellings_sheet_misspelled_word) \
+                        and misspelled_sheet_correct_column_is_empty):
+                print('spellings_row: ' + str(row) + ', misspelled_row: ' + str(misspelled_row))
+                print(spellings_sheet_misspelled_word + ', ' + spelled_word)
+                misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value = spelled_word
+                misspelled_sheet.cell(row=misspelled_row, column=status_column).value = spelled_status
 
 #read_in_write_out()
 
