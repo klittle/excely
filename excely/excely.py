@@ -26,8 +26,8 @@ if __name__ == '__main__':
         """
         Read from Excel file in.xlsx and write to out.xlsx
         """
-        # input file in project root directory
-        in_filename = 'in.xlsx'
+        # input file in project data directory
+        in_filename = 'data/in.xlsx'
         in_workbook = load_workbook(in_filename)
         # ['Sheet 1']
         print(in_workbook.sheetnames)
@@ -38,7 +38,7 @@ if __name__ == '__main__':
         out_sheet = out_workbook.active
         out_sheet.title = "my_sheet"
         # output file in project root directory
-        out_filename = 'out.xlsx'
+        out_filename = 'data/out.xlsx'
 
         # http://stackoverflow.com/questions/37440855/how-do-i-iterate-through-cells-in-a-specific-column-using-openpyxl-1-6
         first_non_header_row = 2
@@ -74,11 +74,11 @@ if __name__ == '__main__':
         If find match, copy spellings column d to misspelled column d.
         """
         # misspelled in project root directory
-        misspelled_file_name = 'misspelled.xlsx'
+        misspelled_file_name = 'data/misspelled.xlsx'
         misspelled_workbook = load_workbook(misspelled_file_name)
         misspelled_sheet = misspelled_workbook.active
 
-        spellings_file_name = 'spellings.xlsx'
+        spellings_file_name = 'data/spellings.xlsx'
         spellings_workbook = load_workbook(spellings_file_name)
         spellings_sheet = spellings_workbook.active
 
