@@ -113,7 +113,7 @@ if __name__ == '__main__':
                                              spellings_sheet_misspelled_word,
                                              status_column)
 
-        misspelled_workbook.save(filename = misspelled_file_name)
+        misspelled_workbook.save(filename=misspelled_file_name)
 
 
     def write_spelling_to_misspelled(misspelled_sheet, misspelled_sheet_correct_column,
