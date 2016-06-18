@@ -99,9 +99,9 @@ if __name__ == '__main__':
             spelled_word = spellings_sheet.cell(row=row, column=spellings_sheet_correct_column).value
             spelled_status = spellings_sheet.cell(row=row, column=status_column).value
 
-            if (spellings_sheet_misspelled_word is not None) \
-                    and (spelled_word is not None) \
-                    and (spelled_status is not None):
+            if ((spellings_sheet_misspelled_word is not None)
+                and (spelled_word is not None)
+                and (spelled_status is not None)):
 
                 write_spelling_to_misspelled(misspelled_sheet,
                                              misspelled_sheet_correct_column,
