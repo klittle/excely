@@ -124,12 +124,12 @@ if __name__ == '__main__':
             misspelled_sheet_misspelled_word = misspelled_sheet.cell(row=misspelled_row,
                                                                      column=misspelled_sheet_misspelled_column).value
             misspelled_sheet_correct_column_is_empty = (
-            (misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value is None) \
+            (misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value is None)
             or (misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value == ''))
 
-            if ((misspelled_sheet_misspelled_word is not None) \
-                        and (misspelled_sheet_misspelled_word == spellings_sheet_misspelled_word) \
-                        and misspelled_sheet_correct_column_is_empty):
+            if ((misspelled_sheet_misspelled_word is not None)
+                and (misspelled_sheet_misspelled_word == spellings_sheet_misspelled_word)
+                and misspelled_sheet_correct_column_is_empty):
                 print('spellings_row: ' + str(row) + ', misspelled_row: ' + str(misspelled_row))
                 print(spellings_sheet_misspelled_word + ', ' + spelled_word)
                 misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value = spelled_word
