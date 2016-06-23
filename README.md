@@ -46,7 +46,12 @@ On my machine, to use python3 must specify python3
     ➜  excely git:(master) which python3
     /usr/local/bin/python3
 
-### Activate virtual environment
+### Use virtualenv to activate the desired virtual environment
+#### on macOS
+    source venv/bin/activate
+
+#### on Windows
+    venv\Scripts\activate
 
     ➜  excely git:(master) source ./venv/bin/activate
 
