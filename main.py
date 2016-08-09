@@ -7,6 +7,6 @@ from excely import excely
 # excely.read_in_write_out(in_filename, out_filename)
 
 spellings_file_name = 'data/input/spellings.xlsx'
-misspelled_file_name = 'data/misspelled.xlsx'
+misspelled_file_name = 'data/output/misspelled.xlsx'
 
 excely.write_spelling_matches_to_file(spellings_file_name, misspelled_file_name)
