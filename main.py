@@ -2,7 +2,9 @@
 
 from excely import excely
 
-#excely.read_in_write_out()
+# in_filename = 'data/input/in.xlsx'
+# out_filename = 'data/out.xlsx'
+# excely.read_in_write_out(in_filename, out_filename)
 
 spellings_file_name = 'data/input/spellings.xlsx'
 misspelled_file_name = 'data/misspelled.xlsx'

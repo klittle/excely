@@ -18,12 +18,16 @@ def spelled_word(in_word):
     return in_word + 'foo'
 
 
-def read_in_write_out():
+def read_in_write_out(in_filename, out_filename):
     """
-    Read from Excel file in.xlsx and write to out.xlsx
+    :param in_filename:
+    excel file with extension .xlsx
+    file to read from
+
+    :param out_filename:
+    excel file with extension .xlsx
+    file to write to
     """
-    # input file in project data directory
-    in_filename = 'data/in.xlsx'
     in_workbook = load_workbook(in_filename)
     # ['Sheet 1']
     print(in_workbook.sheetnames)
@@ -33,8 +37,6 @@ def read_in_write_out():
     out_workbook = Workbook()
     out_sheet = out_workbook.active
     out_sheet.title = "my_sheet"
-    # output file in project root directory
-    out_filename = 'data/out.xlsx'
 
     # http://stackoverflow.com/questions/37440855/how-do-i-iterate-through-cells-in-a-specific-column-using-openpyxl-1-6
     first_non_header_row = 2
@@ -55,16 +57,19 @@ def read_in_write_out():
 
 def write_spelling_matches_to_file(spellings_file_name, misspelled_file_name):
     """
-    Reads from 2 excel files with extension .xlsx
-    Writes to misspelled_file_name
+    Reads from 2 excel files. Writes to misspelled_file_name
 
     :param spellings_file_name:
+    excel file with extension .xlsx
+    file to read from
     spellings number of rows is <= misspelled number of rows
     column b contains misspelled word.
     column b is sorted alphabetically ascending
     column d has correct spelling
 
     :param misspelled_file_name:
+    excel file with extension .xlsx
+    file to read and write
     column b contains misspelled word.
     column b isn't sorted, we don't want to sort this file.
 
