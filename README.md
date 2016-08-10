@@ -15,8 +15,17 @@ https://openpyxl.readthedocs.io/en/default
 
 # Results
 
----
+## run main.py
+### macOS
+    cd <project root directory>
+    source venv/bin/activate
+    python3 -m main
 
+### Windows
+    cd <project root directory>
+    venv\Scripts\activate.bat
+    python3 main.py
+    
 ## Appendix virtual environment venv
 
 The project uses a virtual environment.

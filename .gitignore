@@ -116,9 +116,12 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
-# ignore csv files
+# program data files
+data/*
+
+# csv files
 *.csv
 
-# ignore excel files
+# excel files
 *.xls
 *.xlsx
