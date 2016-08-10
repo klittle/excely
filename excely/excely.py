@@ -180,7 +180,8 @@ def write_name_matches_to_file(names_in, names_out):
 
         if name_in is not None:
 
-            write_name_symbol_to_names_out(name_in,
+            write_name_symbol_to_names_out(row,
+                                           name_in,
                                            names_out_sheet,
                                            names_out_first_non_header_row,
                                            names_out_name_column,
@@ -189,7 +190,8 @@ def write_name_matches_to_file(names_in, names_out):
     names_out_workbook.save(filename=names_out)
 
 
-def write_name_symbol_to_names_out(name_in,
+def write_name_symbol_to_names_out(names_in_row,
+                                   name_in,
                                    names_out_sheet,
                                    names_out_first_non_header_row,
                                    names_out_name_column,
@@ -203,5 +205,5 @@ def write_name_symbol_to_names_out(name_in,
 
         if ((not name_out_is_empty)
             and (name_out == name_in)):
-            print('names_out_row: ' + str(row))
+            print('names_in_row: {}, name_in: {}, names_out_row: {}'.format(names_in_row, name_in, row))
             names_out_sheet.cell(row=row, column=names_out_n_column).value = name_symbol
