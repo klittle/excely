@@ -193,7 +193,7 @@ def write_name_symbol_to_names_out(name_in,
                                    names_out_sheet,
                                    names_out_first_non_header_row,
                                    names_out_name_column,
-                                   names_out_n_column)
+                                   names_out_n_column):
 
     name_symbol = 'n'
 
