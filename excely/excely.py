@@ -199,7 +199,7 @@ def write_name_symbol_to_names_out(name_in,
 
     for row in range(names_out_first_non_header_row, names_out_sheet.max_row + 1):
         name_out = names_out_sheet.cell(row=row, column=names_out_name_column).value
-        name_out_is_empty = ((name_out.value is None) or (name_out.value == ''))
+        name_out_is_empty = ((name_out is None) or (name_out == ''))
 
         if ((not name_out_is_empty)
             and (name_out == name_in)):
