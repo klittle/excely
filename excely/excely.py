@@ -138,3 +138,72 @@ def write_spelling_to_misspelled(misspelled_sheet, misspelled_sheet_correct_colu
             misspelled_sheet.cell(row=misspelled_row, column=misspelled_sheet_correct_column).value = spelled_word
             misspelled_sheet.cell(row=misspelled_row, column=status_column).value = spelled_status
 
+
+def write_name_matches_to_file(names_in, names_out):
+    """
+    Reads from 2 excel files. Writes to names_out
+
+    :param names_in:
+    excel file with extension .xlsx
+    file to read from
+    names_in number of rows is <= names_out number of rows
+    column 'a' (i.e. 1) contains names that may be spelled correctly or not.
+    rows may be sorted alphabetically ascending
+
+    :param names_out:
+    excel file with extension .xlsx
+    file to read and write
+    column 'b' (i.e. 2) contains name.
+    rows aren't sorted, we don't want to sort this file.
+
+    In names_in iterate over every row.
+    Look for match between names_in column 1, look in names_out column 2 for match (one at most).
+    If find match, in names_out column 1 write string "n".
+    """
+    names_in_workbook = load_workbook(names_in)
+    names_in_sheet = names_in_workbook.active
+
+    names_out_workbook = load_workbook(names_out)
+    names_out_sheet = names_out_workbook.active
+
+    # http://stackoverflow.com/questions/37440855/how-do-i-iterate-through-cells-in-a-specific-column-using-openpyxl-1-6
+    names_in_first_non_header_row = 2
+    names_in_column = 1
+
+    names_out_first_non_header_row = 2
+    names_out_name_column = 2
+    names_out_n_column = 1
+
+    # names_in_sheet
+    for row in range(names_in_first_non_header_row, names_in_sheet.max_row + 1):
+        name_in = names_in_sheet.cell(row=row, column=names_in_column).value
+
+        if name_in is not None:
+
+            write_name_symbol_to_names_out(row,
+                                           name_in,
+                                           names_out_sheet,
+                                           names_out_first_non_header_row,
+                                           names_out_name_column,
+                                           names_out_n_column)
+
+    names_out_workbook.save(filename=names_out)
+
+
+def write_name_symbol_to_names_out(names_in_row,
+                                   name_in,
+                                   names_out_sheet,
+                                   names_out_first_non_header_row,
+                                   names_out_name_column,
+                                   names_out_n_column):
+
+    name_symbol = 'n'
+
+    for row in range(names_out_first_non_header_row, names_out_sheet.max_row + 1):
+        name_out = names_out_sheet.cell(row=row, column=names_out_name_column).value
+        name_out_is_empty = ((name_out is None) or (name_out == ''))
+
+        if ((not name_out_is_empty)
+            and (name_out == name_in)):
+            print('names_in_row: {}, name_in: {}, names_out_row: {}'.format(names_in_row, name_in, row))
+            names_out_sheet.cell(row=row, column=names_out_n_column).value = name_symbol
